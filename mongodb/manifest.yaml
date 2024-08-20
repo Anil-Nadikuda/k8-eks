@@ -24,7 +24,7 @@ spec:
       containers:
       - name: mongodb
         image: anilnadikuda/mongodb:v1
-        imagepullpolicy: Always
+        imagePullPolicy: Always
 
 ---
 apiVersion: v1
