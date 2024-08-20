@@ -10,13 +10,13 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels: # these labels are used to find the pods
+    matchLabels: #these labels are used to find the pod
       app: mongodb
       project: roboshop
       tier: db
   template:
     metadata:
-      labels: # these labels are pod labels
+      labels: #these labels are pod labels
         app: mongodb
         project: roboshop
         tier: db
@@ -24,7 +24,8 @@ spec:
       containers:
       - name: mongodb
         image: anilnadikuda/mongodb:v1
-        imagePullPolicy: Always
+        imagepullpolicy: Always
+
 ---
 apiVersion: v1
 kind: Service
