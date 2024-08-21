@@ -1,0 +1,61 @@
+apiVersion: v
+kind: ConfigMap
+metadata:
+  name: mysql
+  namespace: Roboshop
+data:
+  MYSQL_DATABASE: "cities" 
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql
+  namespace: Roboshop
+type: opaque
+data:
+  MYSQL_ROOT_PASSWORD: "RoboShop@1" 
+  MYSQL_USER: "shipping"
+  MYSQL_PASSWORD: "RoboShop@1"
+---
+apiVersion: app/v1
+kind: Deployemnt
+metadata: 
+  name: mysql
+  namespace: roboshop
+  labels:
+    app: mysql
+    project: roboshop
+    tier: db
+  template:
+    replicas: 1
+    selector:
+      matchLabel:
+        app: mysql
+        project: roboshop
+        tier: db
+    spec:
+      containers:
+      - name: mysql
+        image: anilnadikuda/mysql:v1
+        imagePullRequest: Always
+        envFrom:
+        - configMapRef:
+          name: mysql
+        - secretRef:
+          name: mysql
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: roboshop
+spec:
+  selector:
+    app: mysql
+    project: roboshop
+    tier: db
+  ports:
+  - protocol: TCP
+    port: 3306
+    targetport: 3306

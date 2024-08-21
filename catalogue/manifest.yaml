@@ -6,7 +6,7 @@ metadata:
 data:
   MONGO: "true"
 ---
-apiVersion: v1
+apiVersion: app/v1
 kind: Deployment
 metadata:
   name: catalogue
@@ -50,6 +50,5 @@ spec:
     tier: app
   ports:
   - protocol: TCP
-    ports: 8080
+    port: 8080
     targetPort: 8080
-
