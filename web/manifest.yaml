@@ -136,7 +136,7 @@ spec:
       - name: web
         image: anilnadikuda/web:v1
         imagePullPolicy: Always
-        volumeMount:
+        volumeMounts:
         - name: nginx-conf
           mountPath: /etc/nginx/nginx.conf
           subPath: nginx.conf
